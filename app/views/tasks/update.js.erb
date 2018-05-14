@@ -1,0 +1,7 @@
+<% if @task.errors.present? %>
+  $('#myModal #errors .alert-danger').html("<p><%= flash[:error] %></p><%= task_errors %>").removeClass('hidden');
+<% else %>
+  $('#task_list table tbody tr.task_<%= @task.id %>').replaceWith("<%=j render partial: '/tasks/table_record', locals: { task: @task } %>");
+  $('#myModal').modal('hide');
+  $('.flash_msgs').html('<%=j bootstrap_flash %>');
+<% end %>

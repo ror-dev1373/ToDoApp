@@ -1,0 +1,27 @@
+<h2><center>Project Details</center></h2>
+<p><strong>Name: <%= @project.name %></strong></p>
+<p><strong>Description: </strong><%= @project.description %></p>
+<div class='row'>
+  <%= link_to('Add New Task', new_task_path(project_id: @project.id), class: 'pull-right btn btn-default', remote: true , 'data-toggle' =>  "modal", 'data-target' => '#modal-window') %>
+</div>
+<div class='row'>
+  <div id= 'task_list'>
+    <table class='table table-bordered'>
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Description</th>
+          <th>Priority</th>
+          <th>Deadline</th>
+          <th>Status</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @tasks.each do |task| %>
+          <%= render partial: '/tasks/table_record', locals: { task: task } %>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+</div>

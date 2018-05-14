@@ -1,0 +1,7 @@
+<% if @project.persisted? %>
+  $('#project_list table tbody').append("<%=j render partial: '/projects/table_record', locals: { project: @project } %>");
+  clearViewPane();
+  $('.flash_msgs').html('<%=j bootstrap_flash %>');
+<% else %>
+  $('#errors .alert-danger').html("<p><%= flash[:error] %></p><%= project_errors %>").removeClass('hidden');
+<% end %>

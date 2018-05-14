@@ -1,0 +1,11 @@
+<ul class="list-group comment_<%= comment.id %>">
+  <li class="list-group-item">
+    <p>
+      <%= comment.description %>
+      <%= link_to 'Delete', comment_path(comment.id, task_id: @task.id), method: :delete, remote: true, class: 'pull-right' %>
+    </p>
+    <% if comment.ref_file.attached? %>
+      <%= link_to comment.ref_file.filename, rails_blob_path(comment.ref_file, disposition: "attachment") %>
+    <% end %>
+  </li>
+</ul>

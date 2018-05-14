@@ -1,0 +1,4 @@
+<% if @comment.destroyed? %>
+  $('.comments_list .comment_<%= @comment.id %>').remove();
+<% end %>
+$('.flash_msgs').html('<%=j bootstrap_flash %>');

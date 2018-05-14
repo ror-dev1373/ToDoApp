@@ -1,0 +1,27 @@
+<div id='errors' class='col-md-12'>
+  <div class="alert fade in alert-danger hidden"></div>
+</div>
+<h3 id="myModalLabel"><%= @project.name %></h3>
+<%= form_for @task, url: (@task.new_record? ? tasks_path(project_id: @project.id) : task_path(@task, project_id: @project.id)), remote: true do |f| %>
+  <div class='form-group'>
+    <label>Name</label>
+    <%= f.text_field :name, class: 'form-control' %>
+  </div>
+  <div class='form-group'>
+    <label>Description</label>
+    <%= f.text_field :description, class: 'form-control' %>
+  </div>
+  <div class='form-group'>
+    <label>Priority</label>
+    <%= f.select :priority, options_for_select(Task.priorities.map { |k,v| [k.titlecase, k] }, f.object.priority), class: 'form-control' %>
+  </div>
+  <div class='form-group'>
+    <label>Deadline</label>
+    <%= f.text_field :deadline, value: f.object.deadline.try(:strftime, '%d/%m/%Y'), class: 'form-control datepicker' %>
+  </div>
+  <div class='form-group'>
+    <label>Status</label>
+      <%= f.select :status, options_for_select(Task.statuses.map { |k,v| [k.titlecase, k] }, f.object.status), class: 'form-control' %>
+  </div>
+  <%= f.submit 'Submit', class: 'btn btn-default' %>
+<% end %>

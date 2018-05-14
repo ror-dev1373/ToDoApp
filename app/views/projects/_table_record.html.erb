@@ -1,0 +1,9 @@
+<tr class='project_<%= project.id %>'>
+  <td><%= project.name %></td>
+  <td><%= project.description %></td>
+  <td>
+    <%= link_to 'Show', project_path(project.id), remote: true %>
+    <%= link_to 'Edit', edit_project_path(project.id), remote: true %>
+    <%= link_to 'Delete', project_path(project.id), method: :delete, remote: true %>
+  </td>
+</tr>

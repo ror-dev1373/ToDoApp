@@ -1,0 +1,5 @@
+<% if @task.destroyed? %>
+  $('#task_list table tbody tr.task_<%= @task.id%>').remove();
+<% end %>
+$('.flash_msgs').html('<%=j bootstrap_flash %>');
+$('.task_pane').html('');

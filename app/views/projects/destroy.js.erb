@@ -1,0 +1,5 @@
+<% if @project.destroyed? %>
+  $('#project_list table tbody tr.project_<%= @project.id%>').remove();
+<% end %>
+clearViewPane();
+$('.flash_msgs').html('<%=j bootstrap_flash %>');

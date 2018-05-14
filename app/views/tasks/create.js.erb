@@ -1,0 +1,7 @@
+<% if @task.persisted? %>
+  $('#task_list table tbody').append("<%=j render partial: '/tasks/table_record', locals: { task: @task } %>");
+  $('#myModal').modal('hide');
+  $('.flash_msgs').html('<%=j bootstrap_flash %>');
+<% else %>
+  $('#myModal #errors .alert-danger').html("<p><%= flash[:error] %></p><%= task_errors %>").removeClass('hidden');
+<% end %>

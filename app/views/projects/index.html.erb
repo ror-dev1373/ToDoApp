@@ -1,0 +1,31 @@
+<div class='row'>
+  <%= link_to('Add New Project', new_project_path(user_id: current_user.id), class: 'pull-right btn btn-default', remote: true) %>
+</div>
+<div class='row'>
+  <div class='col-md-6' id= 'project_list'>
+    <h2><center>Project List</center></h2>
+    <table class='table table-bordered'>
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Description</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @projects.each do |project| %>
+          <%= render partial: '/projects/table_record', locals: { project: project } %>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+  <div class='col-md-6' id= 'project_pane'>
+    <div id='errors'>
+      <div class="alert fade in alert-danger hidden">
+      </div>
+    </div>
+    <div id= 'content_pane'></div>
+  </div>
+</div>
+<hr>
+<div class='row task_pane'></div>

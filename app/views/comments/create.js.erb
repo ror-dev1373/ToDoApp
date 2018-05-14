@@ -1,0 +1,7 @@
+<% if @comment.persisted? %>
+  $('.comments_list').append("<%=j render partial: '/comments/table_row', locals: { comment: @comment } %>");
+  $('.comment_error .alert-danger').addClass('hidden');
+  $('form#new_comment')[0].reset();
+<% else %>
+  $('.comment_error .alert-danger').html("<p><%= flash[:error] %></p><%= @comment.errors.full_messages.join(',') %>").removeClass('hidden');
+<% end %>

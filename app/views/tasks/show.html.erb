@@ -1,0 +1,41 @@
+<h2><center>Task Details</center></h2>
+<p><strong>Name: <%= @task.name %></strong></p>
+<p><strong>Description: </strong><%= @task.description %></p>
+<div class='row'>
+  <div class='col-md-6'>
+    <label>Priority:</label>
+    <%= @task.priority.titlecase %>
+  </div>
+  <div class='col-md-6'>
+    <label>Deadline:</label>
+    <%= @task.deadline.strftime('%d/%m/%Y') %>
+  </div>
+</div>
+<div class='row'>
+  <div class='col-md-6'>
+    <label>Status:</label>
+    <%= @task.status.titlecase %>
+  </div>
+</div>
+<div class='col-md-12'>
+  <label>Comments:</label>
+  <div class='comments_list'>
+    <% @task.comments.each do |comment| %>
+      <% if comment.persisted? %>
+        <%= render partial: '/comments/table_row', locals: { comment: comment } %>
+      <% end %>
+    <% end %>
+  </div>
+  <div class='row comment_error'>
+    <div class="alert fade in alert-danger hidden"></div>
+  </div>
+  <%= form_for @comment, url: comments_path(task_id: @task.id), authenticity_token: true, remote: true do |f| %>
+    <div class='form-group'>
+      <%= f.text_field :description, class: 'form-control', placeholder: 'Add a Comment' %>
+    </div>
+    <div class='form-group'>
+      <%= f.file_field :ref_file %>
+    </div>
+    <%= f.submit 'Submit', class: 'btn btn-default' %>
+  <% end %>
+</div>

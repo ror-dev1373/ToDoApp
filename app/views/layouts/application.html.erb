@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title><%= content_for?(:title) ? yield(:title) : "ToDoApp" %></title>
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+    <%= stylesheet_link_tag "application", :media => "all" %>
+
+    <!-- For all other devices -->
+    <!-- Size should be 32 x 32 pixels -->
+    <%= favicon_link_tag '/public/favicon.ico', :rel => 'shortcut icon' %>
+
+    <%= javascript_include_tag "application" %>
+
+    <!-- Le HTML5 shim, for IE6-8 support of HTML elements -->
+    <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.2/html5shiv.min.js" type="text/javascript"></script>
+    <![endif]-->
+  </head>
+  <body>
+
+    <div class="navbar navbar-default navbar-static-top">
+      <div class="container">
+        <a class="navbar-brand" href="#">ToDoApp</a>
+        <% if current_user.present? %>
+          <%= link_to('logout', destroy_user_session_path, method: :delete, class: 'pull-right') %>
+        <% end %>
+      </div>
+    </div>
+
+    <div class="container">
+      <div class="row">
+        <div>
+          <div class='flash_msgs'>
+            <%= bootstrap_flash %>
+          </div>
+          <%= yield %>
+        </div>
+      </div><!--/row-->
+      <div id="myModal" class="modal fade" tabindex="-1" role="dialog">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal">×</button>
+                <h3 class='modal-title'>Modal header</h3>
+            </div>
+            <div class="modal-body">
+              <p>My modal content here…</p>
+            </div>
+            <div class="modal-footer"></div>
+          </div>
+        </div>
+      </div>
+
+
+      <footer>
+        <p>&copy; Company 2018</p>
+      </footer>
+
+    </div> <!-- /container -->
+
+  </body>
+</html>

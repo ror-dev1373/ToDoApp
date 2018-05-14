@@ -1,0 +1,12 @@
+<tr class='task_<%= task.id %>'>
+  <td><%= task.name %></td>
+  <td><%= task.description %></td>
+  <td><%= task.priority.titlecase %></td>
+  <td><%= task.deadline.strftime('%d/%m/%Y') %></td>
+  <td><%= task.status.titlecase %></td>
+  <td>
+    <%= link_to 'Show', 'javascript:void(0)', onclick: 'loadTask(this)', 'data-url': task_path(task.id, project_id: @project.id) %>
+    <%= link_to 'Edit', edit_task_path(task.id, project_id: @project.id), remote: true, 'data-toggle' =>  "modal", 'data-target' => '#modal-window' %>
+    <%= link_to 'Delete', task_path(task.id, project_id: @project.id), method: :delete, remote: true %>
+  </td>
+</tr>

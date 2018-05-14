@@ -1,0 +1,7 @@
+<% if @project.errors.present? %>
+  $('#errors .alert-danger').html("<p><%= flash[:error] %></p><%= project_errors %>").removeClass('hidden');
+<% else %>
+  $('#project_list table tbody tr.project_<%= @project.id %>').replaceWith("<%=j render partial: 'table_record', locals: { project: @project } %>");
+  clearViewPane();
+  $('.flash_msgs').html('<%=j bootstrap_flash %>');
+<% end %>
